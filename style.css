@@ -1,0 +1,20 @@
+.page {
+  background-color: #f2f1ee;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.parent {
+  height: 100%;
+  min-height: 320px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.child {
+  background-color: #5cb490;
+  border-radius: 8px;
+  height: 120px;
+  width: 220px;
+}
