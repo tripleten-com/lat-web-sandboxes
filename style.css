@@ -1,0 +1,23 @@
+.boxes {
+  background-color: #e0e0e0;
+  list-style: none;
+}
+
+.box {
+  width: 112px;
+  height: 112px;
+}
+
+.box_bg_red {
+  background-color: #ed6f5d;
+  border-radius: 56px;
+}
+
+.box_bg_blue {
+  background-color: #3073e8;
+}
+
+.box_bg_green {
+  background-color: #10ad78;
+  border-radius: 56px 0;
+}
