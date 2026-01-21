@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Suiss Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url("SuisseIntl-Medium.otf") format("opentype");
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0 150px;
+  height: 100vh;
+  font-family: "Suiss Intl", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 200px;
+}
