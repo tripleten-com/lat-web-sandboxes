@@ -1,0 +1,30 @@
+import { Card } from "./Card.js";
+import { type CardData } from "../types/types.js";
+
+export class DefaultCard extends Card {
+  private text: string;
+  private image: string;
+
+  constructor({ text, image }: CardData, selector: string) {
+    super(selector);
+    this.text = text;
+    this.image = image!;
+  }
+
+  generateCard(): HTMLElement {
+    this.element = super.getTemplate();
+    this.setEventListeners();
+
+    const cardAvatar = this.element.querySelector(
+      ".card__avatar",
+    ) as HTMLImageElement;
+    const cardParagraph = this.element.querySelector(
+      ".card__paragraph",
+    ) as HTMLElement;
+
+    cardAvatar.src = this.image;
+    cardParagraph.textContent = this.text;
+
+    return this.element;
+  }
+}
