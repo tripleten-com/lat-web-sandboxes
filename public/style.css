@@ -150,3 +150,47 @@ body {
   opacity: 1 !important;
   visibility: visible;
 }
+
+.form__input {
+  width: 60%;
+  font-size: 14px;
+  line-height: 19px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #979797;
+  position: relative;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  padding: 10px 0;
+}
+
+.form__submit {
+  width: 40%;
+  font-size: 16px;
+  line-height: 19px;
+  color: #fff;
+  background: #007dff;
+  border-radius: 1px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 12px;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.form {
+  display: flex;
+  align-items: center;
+}
+
+.form-section {
+  margin-top: auto;
+}
