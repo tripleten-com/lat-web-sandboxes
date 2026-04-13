@@ -23,7 +23,6 @@ export class SubmitForm {
     const formTemplate = document.querySelector(
       this.selector,
     ) as HTMLTemplateElement;
-
     const formElement = formTemplate.content
       .querySelector(".form")!
       .cloneNode(true) as HTMLFormElement;
@@ -34,11 +33,20 @@ export class SubmitForm {
   generateForm(): HTMLElement {
     this.element = this.getTemplate();
     this.inputList = this.element.querySelectorAll(".form__input");
-
     this.setEventListeners();
 
     return this.element;
   }
+
+  private setEventListeners(): void {
+    this.element.addEventListener("submit", this.handleSubmit);
+  }
+
+  private handleSubmit = (evt: SubmitEvent): void => {
+    evt.preventDefault();
+    this.handleFormSubmit(this.getInputValues());
+    this.element.reset();
+  };
 
   private getInputValues(): FormValues {
     const formValues: FormValues = {};
@@ -48,15 +56,5 @@ export class SubmitForm {
     });
 
     return formValues;
-  }
-
-  private handleSubmit = (evt: SubmitEvent): void => {
-    evt.preventDefault();
-    this.handleFormSubmit(this.getInputValues());
-    this.element.reset();
-  };
-
-  private setEventListeners(): void {
-    this.element.addEventListener("submit", this.handleSubmit);
   }
 }

@@ -5,19 +5,16 @@ export class Section<T> {
   private renderer: RendererFunction<T>;
   private container: HTMLElement;
 
-  constructor(
-    { data, renderer }: { data: T[]; renderer: RendererFunction<T> },
-    containerSelector: string,
-  ) {
+  constructor({ data, renderer }: { data: T[], renderer: RendererFunction<T> }, containerSelector: string) {
+    this.container = document.querySelector(containerSelector) as HTMLElement;
     this.renderedItems = data;
     this.renderer = renderer;
-    this.container = document.querySelector(containerSelector) as HTMLElement;
   }
 
   renderItems(): void {
     this.renderedItems.forEach((item) => {
       this.renderer(item);
-    });
+    })
   }
 
   setItem(element: HTMLElement): void {

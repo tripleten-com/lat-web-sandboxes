@@ -1,5 +1,5 @@
 import { Card } from "./Card.js";
-import { type CardData } from "../types/types.js";
+import type { CardData } from "../types/types.js";
 
 export class UserCard extends Card {
   private text: string;
@@ -10,15 +10,13 @@ export class UserCard extends Card {
   }
 
   generateCard(): HTMLElement {
-    this.element = super.getTemplate();
+    this.element = this.getTemplate();
     this.setEventListeners();
 
-    const cardParagraph = this.element.querySelector(
-      ".card__paragraph",
-    ) as HTMLElement;
-
+    const cardParagraph = this.element.querySelector(".card__paragraph") as HTMLElement;
     cardParagraph.textContent = this.text;
 
     return this.element;
   }
+
 }

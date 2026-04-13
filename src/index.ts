@@ -1,20 +1,19 @@
-import { Section } from "./components/Section.js";
-import { messageList } from "./utils/constants.js";
-import { DefaultCard } from "./components/DefaultCard.js";
 import { UserCard } from "./components/UserCard.js";
+import { DefaultCard } from "./components/DefaultCard.js";
+import { messageList } from "./utils/constants.js";
+import { Section } from "./components/Section.js";
 import { SubmitForm } from "./components/SubmitForm.js";
-import { type CardData } from "./types/types.js";
+import type { CardData } from "./types/types.js";
 
 const cardList = new Section<CardData>(
   {
     data: messageList,
     renderer: (item) => {
       const card = item.isOwner
-        ? new UserCard(item, ".card-template_type_user")
-        : new DefaultCard(item, ".card-template_type_default");
+        ? new UserCard(item, "#card-template-user")
+        : new DefaultCard(item, "#card-template-default");
 
       const cardElement = card.generateCard();
-
       cardList.setItem(cardElement);
     },
   },
@@ -24,11 +23,11 @@ const cardList = new Section<CardData>(
 cardList.renderItems();
 
 const form = new SubmitForm({
-  selector: ".form-template",
+  selector: "#form-template",
   handleFormSubmit: (formData) => {
     const card = new UserCard(
       { text: formData.text, isOwner: true },
-      ".card-template_type_user",
+      "#card-template-user",
     );
 
     const cardElement = card.generateCard();

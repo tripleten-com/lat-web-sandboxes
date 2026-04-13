@@ -1,5 +1,5 @@
 import { Card } from "./Card.js";
-import { type CardData } from "../types/types.js";
+import type { CardData } from "../types/types.js";
 
 export class DefaultCard extends Card {
   private text: string;
@@ -12,19 +12,16 @@ export class DefaultCard extends Card {
   }
 
   generateCard(): HTMLElement {
-    this.element = super.getTemplate();
+    this.element = this.getTemplate();
     this.setEventListeners();
 
-    const cardAvatar = this.element.querySelector(
-      ".card__avatar",
-    ) as HTMLImageElement;
-    const cardParagraph = this.element.querySelector(
-      ".card__paragraph",
-    ) as HTMLElement;
+    const cardAvatar = this.element.querySelector(".card__avatar") as HTMLImageElement;
+    const cardParagraph = this.element.querySelector(".card__paragraph") as HTMLElement;
 
     cardAvatar.src = this.image;
     cardParagraph.textContent = this.text;
 
     return this.element;
   }
+
 }

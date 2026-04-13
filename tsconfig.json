@@ -6,7 +6,7 @@
 
     // Environment Settings
     "module": "es6",
-    "target": "es2016",
+    "target": "es2022",
     "types": [],
 
     // Other Outputs
@@ -15,8 +15,8 @@
     // "declarationMap": true,
 
     // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": false,
-    "exactOptionalPropertyTypes": false,
+    // "noUncheckedIndexedAccess": false,
+    // "exactOptionalPropertyTypes": false,
 
     // Recommended Options
     "strict": true,

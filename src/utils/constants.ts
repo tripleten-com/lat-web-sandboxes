@@ -1,4 +1,4 @@
-import { type CardData } from "../types/types.js";
+import type { CardData } from "../types/types.js";
 
 export const messageList: CardData[] = [
   {
