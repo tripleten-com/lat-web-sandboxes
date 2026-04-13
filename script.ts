@@ -1,16 +1,36 @@
+interface CardData {
+  text: string;
+  image: string;
+}
+
+const messageList: CardData[] = [
+  {
+    text: "Hola, ¡tenemos que configurar nuestro chat lo antes posible!",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_card__image.jpg",
+  },
+  {
+    text: "¡Ahora podemos crear tantas tarjetas como necesitemos!",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_card__image-lake.jpg",
+  },
+];
+
 class Card {
   private text: string;
   private image: string;
   private element!: HTMLElement;
+  private selector: string;
 
-  constructor(text: string, image: string) {
+  constructor({ text, image }: CardData, selector: string) {
     this.text = text;
     this.image = image;
+    this.selector = selector;
   }
 
   private getTemplate(): HTMLElement {
     const cardTemplate = document.querySelector(
-      "#card-template",
+      this.selector,
     ) as HTMLTemplateElement;
 
     const cardElement = cardTemplate.content
@@ -37,10 +57,9 @@ class Card {
   }
 }
 
-const card = new Card(
-  "¡Hola! ¿Cómo estás?",
-  "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_card__image.jpg",
-);
+messageList.forEach((item) => {
+  const card = new Card(item, "#card-template");
+  const cardElement = card.generateCard();
 
-const cardElement = card.generateCard();
-document.body.append(cardElement);
+  document.body.append(cardElement);
+});
