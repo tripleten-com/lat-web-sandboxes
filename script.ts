@@ -1,3 +1,2 @@
-const image = document.querySelector(".card__avatar") as HTMLImageElement;
-
-console.log(image.src);
+//  "¡Hola! ¿Cómo estás?"
+//   "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_card__image.jpg"
