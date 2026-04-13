@@ -40,6 +40,16 @@ abstract class Card {
 
   abstract generateCard(): HTMLElement;
 
+  protected handleMessageClick = (): void => {
+    const cardText = this.element.querySelector(".card__text") as HTMLElement;
+    cardText.classList.toggle("card__text_is-active");
+  }
+
+  protected setEventListeners(): void {
+    const cardText = this.element.querySelector(".card__text") as HTMLElement;
+    cardText.addEventListener("click", this.handleMessageClick);
+  }
+
 }
 
 class DefaultCard extends Card {
@@ -54,6 +64,7 @@ class DefaultCard extends Card {
 
   generateCard(): HTMLElement {
     this.element = this.getTemplate();
+    this.setEventListeners();
 
     const cardAvatar = this.element.querySelector(".card__avatar") as HTMLImageElement;
     const cardParagraph = this.element.querySelector(".card__paragraph") as HTMLElement;
@@ -76,6 +87,7 @@ class UserCard extends Card {
 
   generateCard(): HTMLElement {
     this.element = this.getTemplate();
+    this.setEventListeners();
 
     const cardParagraph = this.element.querySelector(".card__paragraph") as HTMLElement;
     cardParagraph.textContent = this.text;
