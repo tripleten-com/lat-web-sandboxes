@@ -1,11 +1,11 @@
-type RendererFunction = (item: any) => void;
+type RendererFunction<T> = (item: T) => void;
 
-export class Section {
-  private renderedItems: any[];
-  private renderer: RendererFunction;
+export class Section<T> {
+  private renderedItems: T[];
+  private renderer: RendererFunction<T>;
   private container: HTMLElement;
 
-  constructor({ data, renderer }: { data: any[], renderer: RendererFunction }, containerSelector: string) {
+  constructor({ data, renderer }: { data: T[], renderer: RendererFunction<T> }, containerSelector: string) {
     this.container = document.querySelector(containerSelector) as HTMLElement;
     this.renderedItems = data;
     this.renderer = renderer;
