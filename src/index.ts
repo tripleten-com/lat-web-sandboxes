@@ -2,6 +2,7 @@ import { UserCard } from "./components/UserCard.js";
 import { DefaultCard } from "./components/DefaultCard.js";
 import { messageList } from "./utils/constants.js";
 import { Section } from "./components/Section.js";
+import { SubmitForm } from "./components/SubmitForm.js";
 import type { CardData } from "./types/types.js";
 
 const cardList = new Section<CardData>(
@@ -21,3 +22,18 @@ const cardList = new Section<CardData>(
 
 cardList.renderItems();
 
+const form = new SubmitForm({
+  selector: "#form-template",
+});
+
+const formRenderer = new Section<unknown>(
+  {
+    data: [],
+    renderer: () => {},
+  },
+  ".form-section",
+);
+
+const formElement = form.generateForm();
+
+formRenderer.setItem(formElement);
