@@ -1,3 +1,9 @@
+interface CardData {
+  text: string;
+  isOwner: boolean;
+  image?: string;
+}
+
 const messageList: CardData[] = [
   {
     text: "Hola, ¡tenemos que configurar nuestro chat lo antes posible!",
@@ -17,12 +23,6 @@ const messageList: CardData[] = [
   },
 ];
 
-interface CardData {
-  text: string;
-  isOwner: boolean;
-  image?: string;
-}
-
 abstract class Card {
   protected element!: HTMLElement;
   private selector: string;
@@ -32,24 +32,31 @@ abstract class Card {
   }
 
   protected getTemplate(): HTMLElement {
-    const cardTemplate = document.querySelector(this.selector) as HTMLTemplateElement;
-    const cardElement = cardTemplate.content.querySelector(".card")!.cloneNode(true) as HTMLElement;
+    const cardTemplate = document.querySelector(
+      this.selector,
+    ) as HTMLTemplateElement;
+    const cardElement = cardTemplate.content
+      .querySelector(".card")!
+      .cloneNode(true) as HTMLElement;
 
     return cardElement;
   }
 
   abstract generateCard(): HTMLElement;
 
+  // Usamos una función  flecha.
+  // Esto asegura que 'this' siempre apunte a la instancia de Card
+  // y no al elemento del DOM que recibió el clic.
   protected handleMessageClick = (): void => {
     const cardText = this.element.querySelector(".card__text") as HTMLElement;
     cardText.classList.toggle("card__text_is-active");
-  }
+  };
 
+  // Método centralizado para instalar los detectores de eventos.
   protected setEventListeners(): void {
     const cardText = this.element.querySelector(".card__text") as HTMLElement;
     cardText.addEventListener("click", this.handleMessageClick);
   }
-
 }
 
 class DefaultCard extends Card {
@@ -64,17 +71,22 @@ class DefaultCard extends Card {
 
   generateCard(): HTMLElement {
     this.element = this.getTemplate();
+
+    // Activamos los detectores de eventos inmediatamente después de obtener el elemento.
     this.setEventListeners();
 
-    const cardAvatar = this.element.querySelector(".card__avatar") as HTMLImageElement;
-    const cardParagraph = this.element.querySelector(".card__paragraph") as HTMLElement;
+    const cardAvatar = this.element.querySelector(
+      ".card__avatar",
+    ) as HTMLImageElement;
+    const cardParagraph = this.element.querySelector(
+      ".card__paragraph",
+    ) as HTMLElement;
 
     cardAvatar.src = this.image;
     cardParagraph.textContent = this.text;
 
     return this.element;
   }
-
 }
 
 class UserCard extends Card {
@@ -89,20 +101,20 @@ class UserCard extends Card {
     this.element = this.getTemplate();
     this.setEventListeners();
 
-    const cardParagraph = this.element.querySelector(".card__paragraph") as HTMLElement;
+    const cardParagraph = this.element.querySelector(
+      ".card__paragraph",
+    ) as HTMLElement;
     cardParagraph.textContent = this.text;
 
     return this.element;
   }
-
 }
 
 messageList.forEach((item) => {
-  const card = item.isOwner 
+  const card = item.isOwner
     ? new UserCard(item, "#card-template-user")
     : new DefaultCard(item, "#card-template-default");
 
   const cardElement = card.generateCard();
   document.body.append(cardElement);
 });
-
