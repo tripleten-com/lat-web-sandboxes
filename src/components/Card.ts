@@ -1,3 +1,4 @@
+// Añadimos 'export' para que otras clases puedan heredar de este archivo.
 export abstract class Card {
   protected element!: HTMLElement;
   private selector: string;
@@ -7,8 +8,12 @@ export abstract class Card {
   }
 
   protected getTemplate(): HTMLElement {
-    const cardTemplate = document.querySelector(this.selector) as HTMLTemplateElement;
-    const cardElement = cardTemplate.content.querySelector(".card")!.cloneNode(true) as HTMLElement;
+    const cardTemplate = document.querySelector(
+      this.selector,
+    ) as HTMLTemplateElement;
+    const cardElement = cardTemplate.content
+      .querySelector(".card")!
+      .cloneNode(true) as HTMLElement;
 
     return cardElement;
   }
@@ -18,11 +23,10 @@ export abstract class Card {
   protected handleMessageClick = (): void => {
     const cardText = this.element.querySelector(".card__text") as HTMLElement;
     cardText.classList.toggle("card__text_is-active");
-  }
+  };
 
   protected setEventListeners(): void {
     const cardText = this.element.querySelector(".card__text") as HTMLElement;
     cardText.addEventListener("click", this.handleMessageClick);
   }
-
 }
