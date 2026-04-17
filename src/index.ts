@@ -4,20 +4,22 @@ import { messageList } from "./utils/constants.js";
 import { Section } from "./components/Section.js";
 import type { CardData } from "./types/types.js";
 
+// Al crear la instancia, pasamos <CardData>.
+// Esto "bloquea" la clase para que solo acepte datos de este tipo.
 const cardList = new Section<CardData>(
   {
     data: messageList,
     renderer: (item) => {
-      const card = item.isOwner 
+      // Gracias al genérico, item es automáticamente de tipo CardData.
+      const card = item.isOwner
         ? new UserCard(item, "#card-template-user")
         : new DefaultCard(item, "#card-template-default");
 
       const cardElement = card.generateCard();
       cardList.setItem(cardElement);
-    }
-  }, 
-  ".card-list"
+    },
+  },
+  ".card-list",
 );
 
 cardList.renderItems();
-
