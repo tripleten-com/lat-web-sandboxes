@@ -24,13 +24,16 @@ cardList.renderItems();
 
 const form = new SubmitForm({
   selector: "#form-template",
+  // Definimos qué ocurre cuando se envía el formulario (acoplamiento débil)
   handleFormSubmit: (formData) => {
+    // Creamos una nueva tarjeta con los datos del formulario
     const card = new UserCard(
       { text: formData.text, isOwner: true },
       "#card-template-user",
     );
 
     const cardElement = card.generateCard();
+    // Añadimos la nueva tarjeta al chat usando la instancia de cardList
     cardList.setItem(cardElement);
   },
 });
