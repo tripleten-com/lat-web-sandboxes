@@ -9,23 +9,26 @@ const cardList = new Section<CardData>(
   {
     data: messageList,
     renderer: (item) => {
-      const card = item.isOwner 
+      const card = item.isOwner
         ? new UserCard(item, "#card-template-user")
         : new DefaultCard(item, "#card-template-default");
 
       const cardElement = card.generateCard();
       cardList.setItem(cardElement);
-    }
-  }, 
-  ".card-list"
+    },
+  },
+  ".card-list",
 );
 
 cardList.renderItems();
 
+// Instanciamos el formulario
 const form = new SubmitForm({
   selector: "#form-template",
 });
 
+// Usamos Section para renderizar un solo elemento (el formulario)
+// Como no hay lista de datos, pasamos un array vacío y un renderer vacío
 const formRenderer = new Section<unknown>(
   {
     data: [],
@@ -35,5 +38,4 @@ const formRenderer = new Section<unknown>(
 );
 
 const formElement = form.generateForm();
-
-formRenderer.setItem(formElement);
+formRenderer.setItem(formElement); // El formulario aparece en el DOM
