@@ -1,17 +1,12 @@
-import {useState} from "react";
-import Profile from "./Profile.tsx";
-import { TranslationContext, translations } from "../utils/translationContext";
+import Profile from './Profile'
 import './App.css'
 
 
 function App() {
-  const [lang, setLang] = useState<keyof typeof translations>("en");
 
   return (
     <div>
-      <TranslationContext.Provider value={translations[lang]}>
-        <Profile/>
-      </TranslationContext.Provider>
+      <Profile/>
     </div>
   )
 }
